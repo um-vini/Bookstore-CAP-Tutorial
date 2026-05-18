@@ -1,14 +1,26 @@
 {
-  "name": "Bookstore",
+  "name": "Bookstore-CAP-Tutorial",
   "version": "1.0.0",
   "dependencies": {
     "@sap/cds": "^9"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^2.4"
+    "@cap-js/cds-typer": ">=0.1",
+    "@cap-js/cds-types": "^0.13.0",
+    "@cap-js/sqlite": "^2",
+    "@sap-ux/eslint-plugin-fiori-tools": "^10.1.1",
+    "@ui5/cli": "^4.0.53",
+    "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-bookstorelistview": "cds watch --open bookstorelistview/webapp/test/flpSandbox.html?sap-ui-xx-viewCache=false"
   },
-  "private": true
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/bookstorelistview"
+  ]
 }
