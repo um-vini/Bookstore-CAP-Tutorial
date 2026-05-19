@@ -1,6 +1,16 @@
 using {tutorial.db as db} from '../db/schema';
 
 service BookstoreService {
+    @(restrict: [
+        {
+            grant: ['*'],
+            to   : 'Admin'
+        },
+        {
+            grant: ['READ'],
+            to   : 'authenticated-user'
+        }
+    ])
     entity Books      as projection on db.Books
                          // Bound actions
         actions {
@@ -25,6 +35,7 @@ service BookstoreService {
 
     // Unbound actions
     @(Common.SideEffects: {TargetEntities: ['/BookstoreService.EntityContainer/Books']})
+
     action addDiscount();
 
     entity Authors    as projection on db.Authors;
@@ -36,3 +47,4 @@ service BookstoreService {
 
 // Can be annotated direcly in the annotations.cds file
 annotate BookstoreService.Books with @odata.draft.enabled;
+// annotate BookstoreService.Books with @requires: 'Admin';

@@ -1,5 +1,5 @@
 const cds = require('@sap/cds');
-const { Books } = require('#cds-models/BookstoreService');
+const { Books, Authors } = require('#cds-models/BookstoreService');
 
 module.exports = class BookstoreService extends cds.ApplicationService {
   init() {
@@ -47,6 +47,8 @@ module.exports = class BookstoreService extends cds.ApplicationService {
         }
       }
     });
+
+    //Virtual fields always afeter the after handlers
 
     return super.init();
   }

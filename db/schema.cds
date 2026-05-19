@@ -52,14 +52,15 @@ type BookStatusCode : String(1) enum {
 }
 
 entity Authors : cuid, managed {
-    name  : String;
-    books : Association to many Books
-                on books.author = $self;
+    name              : String;
+    books             : Association to many Books
+                            on books.author = $self;
+    virtual bookCount : Integer;
 
 }
 
 entity Chapters : cuid, managed {
-    key book   : Association to Books; // Association from chapters to books
+    key book   : Association to Books;
         number : Integer;
         title  : String;
         pages  : Integer;

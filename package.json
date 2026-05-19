@@ -18,6 +18,33 @@
     "watch-bookstorelistview": "cds watch --open bookstorelistview/webapp/test/flpSandbox.html?sap-ui-xx-viewCache=false"
   },
   "private": true,
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "db.sqlite"
+        }
+      },
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "alice": {
+            "password": "wonderland",
+            "roles": [
+              "Admin"
+            ]
+          },
+          "bob": {
+            "password": "123",
+            "roles": [
+              "only-read-access"
+            ]
+          }
+        }
+      }
+    }
+  },
   "workspaces": [
     "app/*"
   ],
