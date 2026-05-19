@@ -3,6 +3,17 @@ const { Books } = require('#cds-models/BookstoreService');
 
 module.exports = class BookstoreService extends cds.ApplicationService {
   init() {
+    //Unbound actions
+    this.on('addDiscount', async () => {
+      await UPDATE(Books).set({
+        price: {
+          func: 'ROUND',
+          args: [{ xpr: [{ ref: ['price'] }, '*', { val: 0.9 }] }, { val: 2 }],
+        },
+      });
+    });
+
+    //Bound actions
     this.on('addStock', Books, async (req) => {
       const bookId = req.params[0].ID;
 
