@@ -55,8 +55,7 @@ module.exports = class BookstoreService extends cds.ApplicationService {
     //Virtual fields always afeter the after handlers
     this.after('READ', Books, async (books, req) => {
       const author = books[0].author?.ID;
-      console.log('2', author);
-
+      
       if (!author) {
         return;
       }
@@ -65,8 +64,6 @@ module.exports = class BookstoreService extends cds.ApplicationService {
         .columns('author_ID', { func: 'count' })
         .where({ author_ID: author })
         .groupBy('author_ID');
-
-      console.log('3', bookCounts);
 
       const booksTotal = bookCounts.length > 0 ? bookCounts[0].count : 0;
 

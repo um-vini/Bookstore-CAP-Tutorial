@@ -1,0 +1,21 @@
+GET http://localhost:4004/odata/v4/bookstore/$metadata
+###
+GET http://localhost:4004/odata/v4/bookstore/Chapters
+
+###
+GET http://localhost:4004/odata/v4/bookstore/Books
+Authorization: Basic YWxpY2U6d29uZGVybGFuZA==
+
+###
+GET http://localhost:4004/odata/v4/bookstore/Books?$top=2
+Authorization: Basic YWxpY2U6d29uZGVybGFuZA==
+
+###
+POST http://localhost:4004/odata/v4/bookstore/Books
+Authorization: Basic YWxpY2U6d29uZGVybGFuZA==
+Content-Type: application/json
+
+{
+    "ID":"8f7b6b2a-3f8d-4d5e-9c2b-1f3c6a9d2d16",
+    "title": "AMazing book"
+}

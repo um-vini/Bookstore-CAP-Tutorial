@@ -54,7 +54,6 @@ service BookstoreService {
                                 newStatus: String);
         };
 
-    // Ação Não Vinculada (Unbound Action) - Global para todo o serviço
     // Unbound action (global)
     // Updates the ui when discount in applied
     @Common.SideEffects: {TargetEntities: ['/BookstoreService.EntityContainer/Books']}
