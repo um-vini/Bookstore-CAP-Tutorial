@@ -55,7 +55,7 @@ entity Authors : cuid, managed {
     name              : String;
     books             : Association to many Books
                             on books.author = $self;
-    virtual bookCount : Integer;
+    // virtual bookCount : Integer;
 
 }
 

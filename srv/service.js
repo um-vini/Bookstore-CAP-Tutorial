@@ -1,5 +1,5 @@
 const cds = require('@sap/cds');
-const { Books, Authors } = require('#cds-models/BookstoreService');
+const { Books } = require('#cds-models/BookstoreService');
 
 module.exports = class BookstoreService extends cds.ApplicationService {
   init() {
@@ -36,8 +36,12 @@ module.exports = class BookstoreService extends cds.ApplicationService {
       await UPDATE(Books).set({ status_code: newStatus }).where({ ID: bookId });
     });
 
-    this.before(['READ'], Books, async (req) => {
-      console.log('Before READ Books');
+    this.before(['CREATE', 'UPDATE'], Books, async (req) => {
+      const book = req.data;
+
+      if (book.price !== undefined && book.price <= 0) {
+        req.error(400, 'Price needs to be more than 0!');
+      }
     });
 
     this.after('READ', Books, async (books, req) => {
@@ -49,6 +53,9 @@ module.exports = class BookstoreService extends cds.ApplicationService {
     });
 
     //Virtual fields always afeter the after handlers
+    this.after('READ', Books, async (books, req) => {
+      console.log('AQUIIIII', books);
+    });
 
     return super.init();
   }

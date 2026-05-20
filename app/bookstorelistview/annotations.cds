@@ -76,12 +76,6 @@ annotate service.Books with @(
     ],
     UI.LineItem                    : [
         {
-            $Type      : 'UI.DataField',
-            Value      : status_code,
-            Label      : 'Status',
-            Criticality: status.criticality,
-        },
-        {
             $Type: 'UI.DataField',
             Label: 'Book Name',
             Value: title,
@@ -114,6 +108,12 @@ annotate service.Books with @(
             $Type: 'UI.DataField',
             Value: stock,
             Label: 'Stock',
+        },
+        {
+            $Type      : 'UI.DataField',
+            Value      : status_code,
+            Label      : 'Status',
+            Criticality: status.criticality,
         },
         {
             $Type : 'UI.DataFieldForAction',
